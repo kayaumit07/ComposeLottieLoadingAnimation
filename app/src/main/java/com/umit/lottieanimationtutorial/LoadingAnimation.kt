@@ -21,19 +21,26 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 @Composable
 fun LoadingAnimation() {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.progress))
-    var isPlaying by remember{ mutableStateOf(true) }
-    val progress by animateLottieCompositionAsState(composition, isPlaying = isPlaying,)
-    LaunchedEffect(key1 = progress){
-        if (progress==0f){isPlaying=true}
-        if (progress==1f){isPlaying=false}
+    var isPlaying by remember { mutableStateOf(true) }
+    val progress by animateLottieCompositionAsState(composition, isPlaying = isPlaying)
+    LaunchedEffect(key1 = progress) {
+        if (progress == 0f) {
+            isPlaying = true
+        }
+        if (progress == 1f) {
+            isPlaying = false
+        }
     }
-    Column(modifier = Modifier.fillMaxSize(),
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally) {
-        isPlaying=true
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        isPlaying = true
         LottieAnimation(
             composition = composition,
             progress = { progress },
-            modifier = Modifier.size(100.dp))
+            modifier = Modifier.size(100.dp)
+        )
     }
 }
